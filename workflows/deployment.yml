@@ -1,0 +1,33 @@
+name: Deployment Workflow
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        type: choice
+        description: Deployment environments
+        required: true
+        options:
+          - Dev
+          - Prod
+          - PreProd
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Constants
+        description: Emulate actions
+        id: constants
+        run: |
+          sleep 10
+      - name: Build
+        description: Emulate actions
+        id: build
+        run: |
+          sleep 20
+      - name: Deploy
+        description: Emulate actions
+        id: deploy
+        run: |
+          sleep 20
