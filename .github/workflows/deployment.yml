@@ -34,13 +34,13 @@ jobs:
     needs: constants
     environment: ${{ needs.constants.outputs.github_environment }}
     steps:
-      - name: Test
-        id: test
+      - name: Await environment approval
         run: ''
 
   deploy:
     runs-on: ubuntu-latest
-    needs: review
+    needs: [ 'review', 'constants' ]
+    environment: ${{ needs.constants.outputs.github_environment }}
     if: ${{ needs.review.result == 'success' }}
     steps:
       - name: Build
