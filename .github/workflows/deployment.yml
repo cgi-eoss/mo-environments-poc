@@ -33,6 +33,10 @@ jobs:
     runs-on: ubuntu-latest
     needs: constants
     environment: ${{ needs.constants.outputs.github_environment }}
+    steps:
+      - name: Test
+        id: test
+        run: ''
 
   deploy:
     runs-on: ubuntu-latest
