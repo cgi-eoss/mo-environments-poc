@@ -11,6 +11,7 @@ on:
           - Dev
           - Prod
           - PreProd
+          - Stage
 
 jobs:
   constants:
@@ -23,7 +24,7 @@ jobs:
           case "${{ inputs.environment || 'Pr' }}" in
             "Dev") echo "github_environment=Dev" >>"$GITHUB_OUTPUT" ;;
             "Prod") echo "github_environment=Prod" >>"$GITHUB_OUTPUT" ;;
-            "PreProd") echo "github_environment=Prod" >>"$GITHUB_OUTPUT" ;;
+            "Stage") echo "github_environment=" >>"$GITHUB_OUTPUT" ;;
             *) echo "Unknown environment: ${{ inputs.environment }}"; exit 1 ;;
           esac
     outputs:
