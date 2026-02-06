@@ -25,6 +25,7 @@ jobs:
             "Dev") echo "github_environment=Dev" >>"$GITHUB_OUTPUT" ;;
             "Prod") echo "github_environment=Prod" >>"$GITHUB_OUTPUT" ;;
             "Stage") echo "github_environment=" >>"$GITHUB_OUTPUT" ;;
+            "PreProd") echo "github_environment=MissingEnv" >>"$GITHUB_OUTPUT" ;;
             *) echo "Unknown environment: ${{ inputs.environment }}"; exit 1 ;;
           esac
     outputs:
@@ -41,7 +42,6 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     needs: [ 'review', 'constants' ]
-    environment: ${{ needs.constants.outputs.github_environment }}
     if: ${{ needs.review.result == 'success' }}
     steps:
       - name: Build
